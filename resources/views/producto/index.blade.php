@@ -9,6 +9,13 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                <h1>Home</h1>
+               
+               <ul>
+                @foreach ($producto as $prod)
+                <li> {{$prod->first_name }}</li>
+                @endforeach
+
+               </ul>
             </div>
         </div>
     </div>
