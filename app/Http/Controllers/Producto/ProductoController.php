@@ -13,9 +13,13 @@ class ProductoController extends Controller
      */
     public function index()
     {
-        $producto = producto::all();
+        $producto = Producto::with(['promocion', 'categorium'] )
+        ->orderBy('Id_Productos', 'asc')
+        ->get();
        return view ('producto.index', compact('producto'));
     }
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -62,6 +66,10 @@ class ProductoController extends Controller
      */
     public function destroy(Producto $producto)
     {
-        //
+        // Eliminar el producto
+    $producto->delete();
+
+    // Redirigir con mensaje de éxito
+    return redirect()->route('producto.index')->with('success', 'Producto eliminado correctamente.');
     }
 }
