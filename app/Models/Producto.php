@@ -56,7 +56,7 @@ class Producto extends Model
 
 	public function categorium()
 	{
-		return $this->belongsTo(Categorium::class, 'Catálogo_Id_Catálogo');
+		return $this->belongsTo(Categorium::class, 'Id_Categoria');
 	}
 
 	public function carritos()

@@ -22,21 +22,22 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Categorium extends Model
 {
-	protected $table = 'categoria';
-	protected $primaryKey = 'Id_Categoria';
-	public $timestamps = false;
+    protected $table = 'categoria';
+    protected $primaryKey = 'Id_Categoria';
+    public $timestamps = false;
 
-	protected $fillable = [
-		'Descripcion'
-	];
+    protected $fillable = [
+        'Descripcion'
+    ];
 
-	public function productos()
-	{
-		return $this->hasMany(Producto::class, 'Catálogo_Id_Catálogo');
-	}
+    public function productos()
+    {
+        return $this->hasMany(Producto::class, 'Id_Categoria');
+    }
 
-	public function servicios()
-	{
-		return $this->hasMany(Servicio::class, 'Catálogo_Id_Catálogo');
-	}
+    public function servicios()
+    {
+        return $this->hasMany(Servicio::class, 'Id_Categoria');
+    }
 }
+
