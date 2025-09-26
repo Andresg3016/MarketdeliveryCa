@@ -9,44 +9,58 @@ use Illuminate\Http\Request;
 class ProductoController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Mostrar listado de productos (DataTable).
      */
     public function index()
     {
-        $producto = Producto::with(['promocion', 'categorium'] )
-        ->orderBy('Id_Productos', 'asc')
-        ->get();
-       return view ('producto.index', compact('producto'));
+        $producto = Producto::with(['promocion', 'categorium'])
+            ->orderBy('Id_Productos', 'asc')
+            ->get();
+
+        return view('producto.index', compact('producto'));
     }
 
-
-
     /**
-     * Show the form for creating a new resource.
+     * Mostrar formulario de creación.
      */
     public function create()
     {
-        //
+        return view('producto.create');
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Guardar un producto nuevo.
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'Nombre'        => 'required|string|max:255',
+            'Valor_Unitario'=> 'required|numeric|min:0',
+            'Descripción'   => 'nullable|string',
+            'Stock'         => 'required|integer|min:0',
+        ]);
+
+        Producto::create([
+            'Nombre'         => $request->input('Nombre'),
+            'Valor_Unitario' => $request->input('Valor_Unitario'),
+            'Descripción'    => $request->input('Descripción'),
+            'Stock'          => $request->input('Stock'),
+        ]);
+
+        return redirect()->route('producto.index')->with('ok', 'Producto creado con éxito');
     }
 
     /**
-     * Display the specified resource.
+     * Mostrar un producto específico.
      */
-    public function show(Producto $producto)
+    public function show($id)
     {
-        //
+        $producto = Producto::findOrFail($id);
+        return view('producto.show', compact('producto'));
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Mostrar formulario de edición.
      */
     public function edit($id)
     {
@@ -55,31 +69,37 @@ class ProductoController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Actualizar un producto en BD.
      */
-   public function update(Request $request, $id)
-{
-    $producto = Producto::findOrFail($id);
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'Nombre'        => 'required|string|max:255',
+            'Valor_Unitario'=> 'required|numeric|min:0',
+            'Descripción'   => 'nullable|string',
+            'Stock'         => 'required|integer|min:0',
+        ]);
 
-    $producto->Nombre = $request->input('Nombre');
-    $producto->Valor_Unitario = $request->input('Valor_Unitario');
-    $producto->Descripción = $request->input('Descripción');
-    $producto->Stock = $request->input('Stock');
+        $producto = Producto::findOrFail($id);
 
-    $producto->save();
+        $producto->Nombre        = $request->input('Nombre');
+        $producto->Valor_Unitario= $request->input('Valor_Unitario');
+        $producto->Descripción   = $request->input('Descripción');
+        $producto->Stock         = $request->input('Stock');
 
-    return redirect()->route('producto.index')->with('ok', 'Producto actualizado con éxito');
-}
+        $producto->save();
+
+        return redirect()->route('producto.index')->with('ok', 'Producto actualizado con éxito');
+    }
 
     /**
-     * Remove the specified resource from storage.
+     * Eliminar un producto.
      */
     public function destroy($id)
     {
-        // Eliminar el producto
-    $producto = Producto::findOrFail($id);
-    $producto->delete();
-    // Redirigir con mensaje de éxito
-    return redirect()->route('producto.index')->with('ok', 'Producto eliminado correctamente.');
+        $producto = Producto::findOrFail($id);
+        $producto->delete();
+
+        return redirect()->route('producto.index')->with('ok', 'Producto eliminado correctamente');
     }
 }
