@@ -1,19 +1,19 @@
 <?php
 
-use App\Http\Controllers\Producto\ProductoController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Producto\ProductoController;
 
-
-Route::view('/', 'login'); // la raíz será el login
+// Ruta raíz
+Route::view('/', 'index'); // la raíz será el login
 
 // Rutas principales
-Route::view('/index', 'index');
+Route::view('/login', 'login');
 Route::view('/productos', 'productos');
 Route::view('/carrito', 'carrito');
 Route::view('/perfil', 'perfil');
-Route::view('/dashboard', 'dashboard');
+Route::view('/dashboard', 'dashboard')->name('dashboard');
 
-// Errores (Admin y Mapa)
+// Errores
 Route::view('/error404', 'error404');
 Route::view('/error500', 'error500');
 
@@ -26,10 +26,12 @@ Route::view('/ticket', 'ticket');
 Route::view('/registro', 'registro');
 Route::view('/pqr', 'pqr');
 
-    // Rutas del recurso producto
+// Rutas del recurso Producto
 Route::resource('producto', ProductoController::class)->names('producto');
-Route::delete('/producto/{producto}', [ProductoController::class, 'destroy'])->name('producto.destroy');
 
-Route::get('/datatables', [ProductoController::class, 'index'])->name('admin.datatables');
-
-
+// Ruta para Datatable
+use App\Models\Producto;
+Route::get('/datatable', function () {
+    $producto = Producto::all();
+    return view('datatable', compact('producto'));
+})->name('datatable');

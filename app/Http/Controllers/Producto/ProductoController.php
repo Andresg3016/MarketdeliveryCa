@@ -17,7 +17,7 @@ class ProductoController extends Controller
             ->orderBy('Id_Productos', 'asc')
             ->get();
 
-        return view('producto.index', compact('producto'));
+        return view('datatable', compact('producto'));
     }
 
     /**
@@ -47,7 +47,7 @@ class ProductoController extends Controller
             'Stock'          => $request->input('Stock'),
         ]);
 
-        return redirect()->route('producto.index')->with('ok', 'Producto creado con éxito');
+    return redirect()->route('datatable')->with('ok', 'Producto creado con éxito');
     }
 
     /**
@@ -89,7 +89,7 @@ class ProductoController extends Controller
 
         $producto->save();
 
-        return redirect()->route('producto.index')->with('ok', 'Producto actualizado con éxito');
+    return redirect()->route('datatable')->with('ok', 'Producto actualizado con éxito');
     }
 
     /**
@@ -100,6 +100,6 @@ class ProductoController extends Controller
         $producto = Producto::findOrFail($id);
         $producto->delete();
 
-        return redirect()->route('producto.index')->with('ok', 'Producto eliminado correctamente');
+    return redirect()->route('datatable')->with('ok', 'Producto eliminado correctamente');
     }
 }

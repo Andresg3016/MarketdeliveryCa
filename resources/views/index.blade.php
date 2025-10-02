@@ -14,7 +14,7 @@
         <h1>Market Delivery</h1>
         <nav>
           <ul>
-            <li><a href="{{ url('index') }}">Inicio</a></li>
+            <li><a href="{{ url('login') }}">Inicio de sesión</a></li>
             <li><a href="{{ url('productos') }}">Productos</a></li>
             <li><a href="{{ url('carrito') }}">Carrito</a></li>
             <li><a href="{{ url('perfil') }}">Perfil</a></li>

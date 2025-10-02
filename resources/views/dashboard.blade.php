@@ -46,9 +46,9 @@
     
       <div class="card">
         <i class="fa-solid fa-user-shield fa-2x icon"></i>
-        <h2>Admin</h2>
-        <p>Accede al panel de administrador.</p>
-        <a href="{{ url('/datatables') }}" class="btn">Panel Admin</a>
+        <h2>Datatable</h2>
+        <p>Accede al datatable</p>
+        <a href="{{ url('/datatable') }}" class="btn">Panel Datatable</a>
         </div>
     </section>
   </main>
