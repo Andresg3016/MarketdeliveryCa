@@ -91,4 +91,116 @@
             });
         });
     </script>
+
+    <style>
+    /* Tabla */
+    #producto {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 1rem;
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    #producto thead {
+        background-color: #000000;
+        color: #f5bd27;
+        text-align: center;
+    }
+
+    #producto th, 
+    #producto td {
+        padding: 0.8rem;
+        border: 1px solid #ddd;
+        text-align: center;
+    }
+
+    #producto tbody tr:nth-child(even) {
+        background-color: #fff9db; /* Amarillo claro */
+    }
+
+    #producto tbody tr:hover {
+        background-color: #fcd56b; /* Amarillo más fuerte */
+    }
+
+    /* Botones de acciones */
+    .btn {
+        display: inline-block;
+        padding: 0.4rem 0.8rem;
+        border-radius: 6px;
+        font-size: 0.9rem;
+        font-weight: bold;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .btn-primary {
+        background-color: #000000;
+        color: #f5bd27;
+        border: none;
+    }
+    .btn-primary:hover {
+        background-color: #333333;
+    }
+
+    .btn-danger {
+        background-color: #f5bd27;
+        color: #000000;
+        border: none;
+    }
+    .btn-danger:hover {
+        background-color: #e6ab1f;
+    }
+
+    /* DataTables: buscador y paginación */
+    .dataTables_wrapper .dataTables_filter input {
+        border: 1px solid #ccc;
+        padding: 0.4rem;
+        border-radius: 5px;
+    }
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button {
+        background: #000000;
+        color: #f5bd27 !important;
+        border-radius: 5px;
+        padding: 0.4rem 0.8rem;
+        margin: 0 2px;
+    }
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button.current {
+        background: #f5bd27 !important;
+        color: #000000 !important;
+    }
+
+    /* Botones de exportación */
+    .dt-button {
+        background-color: #000000 !important;
+        color: #f5bd27 !important;
+        border: none !important;
+        border-radius: 6px !important;
+        padding: 0.5rem 1rem !important;
+        font-weight: bold;
+        margin: 0 5px;
+    }
+
+    .dt-button:hover {
+        background-color: #333333 !important;
+        color: #fcd56b !important;
+    }
+    /* Navbar Custom */
+.navbar-link {
+  background-color: #000000;
+  color: #f5bd27 !important;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-weight: bold;
+  transition: 0.3s ease;
+}
+
+.navbar-link:hover {
+  background-color: #f5bd27;
+  color: #000000 !important;
+}
+
+</style>
+
 </x-app-layout>
